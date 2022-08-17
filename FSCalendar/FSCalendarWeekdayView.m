@@ -75,12 +75,15 @@
         opposite = (direction == UIUserInterfaceLayoutDirectionRightToLeft);
     }
     CGFloat x = 0;
+    CGFloat leftMargin = 2;
     for (NSInteger i = 0; i < count; i++) {
         CGFloat width = widths[i];
         NSInteger labelIndex = opposite ? count-1-i : i;
         UILabel *label = [self.weekdayPointers pointerAtIndex:labelIndex];
         label.frame = CGRectMake(x, 0, width, self.contentView.fs_height);
+        CGFloat tempX = x;
         x = CGRectGetMaxX(label.frame);
+        label.frame = CGRectMake(tempX+leftMargin, 0, width, self.contentView.fs_height);
     }
     free(widths);
 }
